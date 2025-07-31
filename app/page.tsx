@@ -60,20 +60,27 @@ export default function MeshkatAILanding() {
       <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-slate-800/90" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 py-20 lg:py-32">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 py-12 lg:py-20">
           <div className="w-full">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Left Column - Text Content */}
+                            {/* Left Column - Text Content */}
               <div className="text-center lg:text-left">
+                {/* Logo Placeholder */}
+                <div className="mb-8 lg:mb-12">
+                  <div className="inline-flex items-center justify-center w-36 h-11 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white font-light tracking-widest text-lg">
+                    MESHKAT<span className="text-teal-400 font-bold">AI</span>
+                  </div>
+                </div>
+
                 <div className="inline-flex items-center bg-teal-500/20 text-teal-300 px-4 py-2 rounded-full text-sm font-medium mb-6 animate-pulse">
                   <Zap className="w-4 h-4 mr-2" />
                   Coming Soon - Join the Revolution
                 </div>
 
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                The First{" "}
+                  The First{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-400">
-                  Full-stack AI Firm{" "}
+                    Full-stack AI Firm{" "}
                   </span>
                   for HR Legal Services
                 </h1>
