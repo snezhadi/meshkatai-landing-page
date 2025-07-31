@@ -29,10 +29,29 @@ export default function MeshkatAILanding() {
   const [email, setEmail] = useState("")
   const [role, setRole] = useState("")
 
-  const handleWaitlistSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState("")
+
+  const handleWaitlistSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle waitlist signup
-    console.log("Waitlist signup:", { email, role })
+    setIsSubmitting(true)
+    setSubmitMessage("")
+
+    try {
+      // Simulate API call - replace with your actual endpoint
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      
+      // Here you would typically send to your backend
+      console.log("Waitlist signup:", { email, role })
+      
+      setSubmitMessage("Thank you! You've been added to our waitlist. We'll notify you when we launch!")
+      setEmail("")
+      setRole("")
+    } catch (error) {
+      setSubmitMessage("Something went wrong. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -52,20 +71,25 @@ export default function MeshkatAILanding() {
                 </div>
 
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                  Revolutionizing HR Legal Work with{" "}
+                The first{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-400">
-                    Human-Like AI Lawyers
+                  Full-stack AI Firm{" "}
                   </span>
+                  for HR legal services
                 </h1>
 
                 <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  MeshkatAI is the first full-stack AI law firm specialized in Employment Law, providing instant legal
-                  document generation, compliance guidance, and negotiation support through our advanced digital human
-                  interface.
+                Revolutionizing HR Legal Work with Human-Like AI Lawyers. 
                 </p>
 
                 <Button
                   size="lg"
+                  onClick={() => {
+                    // Scroll to the waitlist form
+                    document.getElementById('waitlist-form')?.scrollIntoView({ 
+                      behavior: 'smooth' 
+                    })
+                  }}
                   className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                 >
                   Join the Waitlist
@@ -79,7 +103,7 @@ export default function MeshkatAILanding() {
                   {/* Main Product Image */}
                   <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden">
                     <img
-                      src="/placeholder.svg?height=600&width=800&text=MeshkatAI+Dashboard+-+AI+Lawyer+Avatar+with+Contract+Generator+Interface"
+                      src="/hero.png"
                       alt="MeshkatAI Product Interface - AI Lawyer Avatar with Contract Generator"
                       className="w-full h-auto"
                     />
@@ -103,13 +127,13 @@ export default function MeshkatAILanding() {
                 </div>
 
                 {/* Additional Floating Cards */}
-                <div className="absolute -left-8 top-1/2 transform -translate-y-1/2 hidden lg:block">
+                <div className="absolute -left-8 top-2/3 transform -translate-y-1/2 hidden lg:block">
                   <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4 shadow-lg">
                     <div className="flex items-center space-x-3">
                       <FileText className="w-6 h-6 text-teal-400" />
                       <div>
-                        <div className="text-white font-medium text-sm">Employment Contract</div>
-                        <div className="text-slate-300 text-xs">Fast, Affordable, 24/7</div>
+                        <div className="text-white font-medium text-sm">HR Legal Documents</div>
+                        <div className="text-slate-300 text-xs">Instant, Affordable, 24/7</div>
                       </div>
                     </div>
                   </div>
@@ -147,7 +171,7 @@ export default function MeshkatAILanding() {
               <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110">
                 <MessageCircle className="w-10 h-10 text-teal-500" />
               </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">1. Chat with Avatar</h3>
+              <h3 className="text-xl font-semibold text-slate-900 mb-3">1. AI Lawyer Consultation</h3>
               <p className="text-slate-600">
                 Interact with our AI lawyer through natural conversation to explain your legal needs
               </p>
@@ -157,7 +181,7 @@ export default function MeshkatAILanding() {
               <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110">
                 <FileText className="w-10 h-10 text-teal-500" />
               </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">2. Document Generation</h3>
+              <h3 className="text-xl font-semibold text-slate-900 mb-3">2. Drafting Documents</h3>
               <p className="text-slate-600">
                 Receive professionally drafted legal documents tailored to your specific requirements
               </p>
@@ -186,61 +210,67 @@ export default function MeshkatAILanding() {
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <Tabs defaultValue="documents" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-8 bg-slate-100 p-1 rounded-lg">
+          <div className="max-w-6xl mx-auto">
+            <Tabs defaultValue="onboarding" className="w-full">
+              <TabsList className="grid w-full grid-cols-3 mb-8 bg-slate-100 p-1 rounded-lg">
                 <TabsTrigger
-                  value="documents"
+                  value="onboarding"
                   className="text-lg py-3 px-6 rounded-md font-semibold transition-all duration-200 data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm data-[state=inactive]:text-slate-600 data-[state=inactive]:hover:text-slate-800 data-[state=inactive]:hover:bg-slate-50"
                 >
-                  Legal Documents
+                  Employee Onboarding
                 </TabsTrigger>
                 <TabsTrigger
-                  value="letters"
+                  value="employment"
                   className="text-lg py-3 px-6 rounded-md font-semibold transition-all duration-200 data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm data-[state=inactive]:text-slate-600 data-[state=inactive]:hover:text-slate-800 data-[state=inactive]:hover:bg-slate-50"
                 >
-                  HR Letters
+                  During Employment
+                </TabsTrigger>
+                <TabsTrigger
+                  value="termination"
+                  className="text-lg py-3 px-6 rounded-md font-semibold transition-all duration-200 data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm data-[state=inactive]:text-slate-600 data-[state=inactive]:hover:text-slate-800 data-[state=inactive]:hover:bg-slate-50"
+                >
+                  Exit & Termination
                 </TabsTrigger>
               </TabsList>
 
-              <TabsContent value="documents">
+              <TabsContent value="onboarding">
                 <Card>
                   <CardContent className="p-8">
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-4">
                         <div className="flex items-center">
                           <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Employment Contracts</span>
+                          <span className="text-slate-700">Employment Offer Letter</span>
                         </div>
                         <div className="flex items-center">
                           <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Non-Disclosure Agreements</span>
+                          <span className="text-slate-700">Job Description</span>
                         </div>
                         <div className="flex items-center">
                           <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Non-Compete Clauses</span>
+                          <span className="text-slate-700">Employment Contract / Appointment Letter</span>
                         </div>
                         <div className="flex items-center">
                           <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Severance Agreements</span>
+                          <span className="text-slate-700">Non-Disclosure Agreement (NDA)</span>
                         </div>
                       </div>
                       <div className="space-y-4">
                         <div className="flex items-center">
                           <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Employee Handbooks</span>
+                          <span className="text-slate-700">Employee Handbook</span>
                         </div>
                         <div className="flex items-center">
                           <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Policy Documents</span>
+                          <span className="text-slate-700">Intellectual Property Assignment Agreement</span>
                         </div>
                         <div className="flex items-center">
                           <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Compliance Forms</span>
+                          <span className="text-slate-700">Welcome Letter / Onboarding Schedule</span>
                         </div>
                         <div className="flex items-center">
                           <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Termination Documents</span>
+                          <span className="text-slate-700">Background Check Authorization</span>
                         </div>
                       </div>
                     </div>
@@ -248,44 +278,121 @@ export default function MeshkatAILanding() {
                 </Card>
               </TabsContent>
 
-              <TabsContent value="letters">
+              <TabsContent value="employment">
                 <Card>
                   <CardContent className="p-8">
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-4">
                         <div className="flex items-center">
                           <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Offer Letters</span>
+                          <span className="text-slate-700">Performance Appraisal and Review Letters</span>
                         </div>
                         <div className="flex items-center">
                           <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Termination Letters</span>
+                          <span className="text-slate-700">Promotion Letters and Contract Amendments</span>
                         </div>
                         <div className="flex items-center">
                           <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Warning Letters</span>
+                          <span className="text-slate-700">Salary Increment or Adjustment Letters</span>
                         </div>
                         <div className="flex items-center">
                           <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Performance Reviews</span>
+                          <span className="text-slate-700">Warning / Disciplinary Letters</span>
+                        </div>
+                        <div className="flex items-center">
+                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
+                          <span className="text-slate-700">Leave Approval or Rejection Letters</span>
+                        </div>
+                        <div className="flex items-center">
+                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
+                          <span className="text-slate-700">Transfer or Secondment Letters</span>
+                        </div>
+                        <div className="flex items-center">
+                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
+                          <span className="text-slate-700">Training Invitations and Confirmation Letters</span>
                         </div>
                       </div>
                       <div className="space-y-4">
                         <div className="flex items-center">
                           <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Reference Letters</span>
+                          <span className="text-slate-700">Policy Updates and Acknowledgment Letters</span>
                         </div>
                         <div className="flex items-center">
                           <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Promotion Letters</span>
+                          <span className="text-slate-700">Reference Letter</span>
                         </div>
                         <div className="flex items-center">
                           <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Leave Approvals</span>
+                          <span className="text-slate-700">Employee Verification Letter</span>
                         </div>
                         <div className="flex items-center">
                           <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Disciplinary Actions</span>
+                          <span className="text-slate-700">Contract Renewal/Extension Letter</span>
+                        </div>
+                        <div className="flex items-center">
+                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
+                          <span className="text-slate-700">Probation Extension Letter</span>
+                        </div>
+                        <div className="flex items-center">
+                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
+                          <span className="text-slate-700">Notice of Suspension Letter</span>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+
+              <TabsContent value="termination">
+                <Card>
+                  <CardContent className="p-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                        <div className="flex items-center">
+                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
+                          <span className="text-slate-700">Resignation Acceptance Letter</span>
+                        </div>
+                        <div className="flex items-center">
+                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
+                          <span className="text-slate-700">Termination Letter / Notice of Termination</span>
+                        </div>
+                        <div className="flex items-center">
+                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
+                          <span className="text-slate-700">Relieving Letter (confirmation of release from employment)</span>
+                        </div>
+                        <div className="flex items-center">
+                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
+                          <span className="text-slate-700">Experience Certificate / Service Letter</span>
+                        </div>
+                        <div className="flex items-center">
+                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
+                          <span className="text-slate-700">Return of Company Property Letter</span>
+                        </div>
+                      </div>
+                      <div className="space-y-4">
+                        <div className="flex items-center">
+                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
+                          <span className="text-slate-700">Exit Interview Invitation Letter</span>
+                        </div>
+                        <div className="flex items-center">
+                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
+                          <span className="text-slate-700">Final Settlement and Clearance Documents</span>
+                        </div>
+                        <div className="flex items-center">
+                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
+                          <span className="text-slate-700">Contract Termination or Non-Renewal Letters</span>
+                        </div>
+                        <div className="flex items-center">
+                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
+                          <span className="text-slate-700">Retirement Notification and Acceptance Letter</span>
+                        </div>
+                        <div className="flex items-center">
+                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
+                          <span className="text-slate-700">Layoff or Redundancy Notice</span>
+                        </div>
+                        <div className="flex items-center">
+                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
+                          <span className="text-slate-700">No Objection Certificate (NOC) Letter</span>
                         </div>
                       </div>
                     </div>
@@ -412,7 +519,7 @@ export default function MeshkatAILanding() {
               early access when we launch.
             </p>
 
-            <form onSubmit={handleWaitlistSubmit} className="max-w-md mx-auto space-y-4">
+            <form id="waitlist-form" onSubmit={handleWaitlistSubmit} className="max-w-md mx-auto space-y-4">
               <Input
                 type="email"
                 placeholder="Enter your email address"
@@ -420,9 +527,10 @@ export default function MeshkatAILanding() {
                 onChange={(e) => setEmail(e.target.value)}
                 className="bg-white/10 border-white/20 text-white placeholder:text-slate-400"
                 required
+                disabled={isSubmitting}
               />
 
-              <Select value={role} onValueChange={setRole}>
+              <Select value={role} onValueChange={setRole} disabled={isSubmitting}>
                 <SelectTrigger className="bg-white/10 border-white/20 text-white">
                   <SelectValue placeholder="Select your role" />
                 </SelectTrigger>
@@ -438,11 +546,31 @@ export default function MeshkatAILanding() {
               <Button
                 type="submit"
                 size="lg"
-                className="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 rounded-full transition-all duration-300 transform hover:scale-105"
+                disabled={isSubmitting}
+                className="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 rounded-full transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Get Early Access
-                <ArrowRight className="ml-2 w-5 h-5" />
+                {isSubmitting ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                    Processing...
+                  </>
+                ) : (
+                  <>
+                    Get Early Access
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </>
+                )}
               </Button>
+
+              {submitMessage && (
+                <div className={`text-center p-3 rounded-lg text-sm ${
+                  submitMessage.includes("Thank you") 
+                    ? "bg-green-500/20 text-green-300 border border-green-500/30" 
+                    : "bg-red-500/20 text-red-300 border border-red-500/30"
+                }`}>
+                  {submitMessage}
+                </div>
+              )}
             </form>
           </div>
         </div>
@@ -476,6 +604,19 @@ export default function MeshkatAILanding() {
 
             <Button
               size="lg"
+              onClick={() => {
+                // Open email client with demo request
+                const subject = encodeURIComponent("MeshkatAI Demo Request")
+                const body = encodeURIComponent(`Hi MeshkatAI team,
+
+I'm interested in scheduling a demo of your AI legal services platform.
+
+Please contact me to arrange a demonstration.
+
+Best regards,
+[Your Name]`)
+                window.open(`mailto:info@meshkat-partners.com?subject=${subject}&body=${body}`)
+              }}
               className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 transform hover:scale-105"
             >
               Schedule a Demo
@@ -504,11 +645,11 @@ export default function MeshkatAILanding() {
                   <h4 className="text-lg font-semibold text-teal-400">Abu Dhabi Office</h4>
                 </div>
                 <div className="space-y-2 text-slate-300">
-                  <p className="font-medium">Abu Dhabi Global Market (ADGM)</p>
+                  <p className="font-medium">Meshkat Partners LTD</p>
                   <p className="text-sm leading-relaxed">
-                    No. 18, 11th Floor, Sky Tower<br />
-                    Al Reem Island - Shams Abu Dhabi<br />
-                    Abu Dhabi - United Arab Emirates
+                    Abu Dhabi Global Market (ADGM)<br />
+                    No. 18, 11th Floor, Sky Tower, Al Reem Island<br />
+                     Shams Abu Dhabi, Abu Dhabi - United Arab Emirates
                   </p>
                 </div>
               </div>
