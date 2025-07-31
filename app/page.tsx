@@ -497,13 +497,13 @@ export default function MeshkatAILanding() {
             </p>
           </div>
 
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <Card className="overflow-hidden shadow-2xl">
               <CardContent className="p-0">
                 <img
-                  src="/placeholder.svg?height=450&width=800"
-                  alt="MeshkatAI Product Interface"
-                  className="w-full h-auto"
+                  src="/meshkatai-screen.png"
+                  alt="MeshkatAI Product Interface - AI Lawyer Dashboard"
+                  className="w-full h-auto rounded-lg"
                 />
               </CardContent>
             </Card>
