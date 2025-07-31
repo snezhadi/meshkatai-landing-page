@@ -60,7 +60,7 @@ export default function MeshkatAILanding() {
       <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-slate-800/90" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 py-12 lg:py-20">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 py-8 lg:py-16">
           <div className="w-full">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
                             {/* Left Column - Text Content */}
