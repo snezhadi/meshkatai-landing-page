@@ -60,8 +60,8 @@ export default function MeshkatAILanding() {
       <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-slate-800/90" />
 
-        <div className="relative container mx-auto px-4 py-20 lg:py-32">
-          <div className="max-w-7xl mx-auto">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+          <div className="w-full">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left Column - Text Content */}
               <div className="text-center lg:text-left">
@@ -158,7 +158,7 @@ export default function MeshkatAILanding() {
 
       {/* How It Works */}
       <section className="py-20 bg-slate-50">
-        <div className="container mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">How It Works</h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
@@ -202,7 +202,7 @@ export default function MeshkatAILanding() {
 
       {/* What We Cover */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">What We Cover</h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
@@ -215,19 +215,19 @@ export default function MeshkatAILanding() {
               <TabsList className="grid w-full grid-cols-3 mb-8 bg-slate-100 p-1 rounded-lg">
                 <TabsTrigger
                   value="onboarding"
-                  className="text-lg py-3 px-6 rounded-md font-semibold transition-all duration-200 data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm data-[state=inactive]:text-slate-600 data-[state=inactive]:hover:text-slate-800 data-[state=inactive]:hover:bg-slate-50"
+                  className="text-sm md:text-lg py-3 px-2 md:px-6 rounded-md font-semibold transition-all duration-200 data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm data-[state=inactive]:text-slate-600 data-[state=inactive]:hover:text-slate-800 data-[state=inactive]:hover:bg-slate-50 text-center break-words"
                 >
                   Employee Onboarding
                 </TabsTrigger>
                 <TabsTrigger
                   value="employment"
-                  className="text-lg py-3 px-6 rounded-md font-semibold transition-all duration-200 data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm data-[state=inactive]:text-slate-600 data-[state=inactive]:hover:text-slate-800 data-[state=inactive]:hover:bg-slate-50"
+                  className="text-sm md:text-lg py-3 px-2 md:px-6 rounded-md font-semibold transition-all duration-200 data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm data-[state=inactive]:text-slate-600 data-[state=inactive]:hover:text-slate-800 data-[state=inactive]:hover:bg-slate-50 text-center break-words"
                 >
                   During Employment
                 </TabsTrigger>
                 <TabsTrigger
                   value="termination"
-                  className="text-lg py-3 px-6 rounded-md font-semibold transition-all duration-200 data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm data-[state=inactive]:text-slate-600 data-[state=inactive]:hover:text-slate-800 data-[state=inactive]:hover:bg-slate-50"
+                  className="text-sm md:text-lg py-3 px-2 md:px-6 rounded-md font-semibold transition-all duration-200 data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm data-[state=inactive]:text-slate-600 data-[state=inactive]:hover:text-slate-800 data-[state=inactive]:hover:bg-slate-50 text-center break-words"
                 >
                   Exit & Termination
                 </TabsTrigger>
@@ -406,7 +406,7 @@ export default function MeshkatAILanding() {
 
       {/* Why MeshkatAI */}
       <section className="py-20 bg-slate-50">
-        <div className="container mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Why MeshkatAI?</h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
@@ -482,7 +482,7 @@ export default function MeshkatAILanding() {
 
       {/* Sneak Peek */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Sneak Peek</h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
@@ -506,7 +506,7 @@ export default function MeshkatAILanding() {
 
       {/* Email Signup */}
       <section className="py-20 bg-gradient-to-r from-slate-900 to-slate-800 text-white">
-        <div className="container mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center bg-teal-500/20 text-teal-300 px-4 py-2 rounded-full text-sm font-medium mb-6">
               <Clock className="w-4 h-4 mr-2" />
@@ -578,7 +578,7 @@ export default function MeshkatAILanding() {
 
       {/* Contact/CTA */}
       <section className="py-20 bg-slate-50">
-        <div className="container mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center bg-teal-100 text-teal-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
               <Award className="w-4 h-4 mr-2" />
@@ -628,7 +628,7 @@ Best regards,
 
       {/* Footer */}
       <footer className="bg-slate-900 text-white py-12">
-        <div className="container mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             {/* Company Info */}
             <div className="text-center mb-8">
