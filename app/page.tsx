@@ -40,16 +40,25 @@ export default function MeshkatAILanding() {
     setSubmitMessage("")
 
     try {
-      // Simulate API call - replace with your actual endpoint
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      
-      // Here you would typically send to your backend
-      console.log("Waitlist signup:", { email, role })
-      
-      setSubmitMessage("Thank you! You've been added to our waitlist. We'll notify you when we launch!")
-      setEmail("")
-      setRole("")
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, role }),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setSubmitMessage("Thank you! You've been added to our waitlist. We'll notify you when we launch!")
+        setEmail("")
+        setRole("")
+      } else {
+        setSubmitMessage(data.error || "Something went wrong. Please try again.")
+      }
     } catch (error) {
+      console.error('Waitlist signup error:', error)
       setSubmitMessage("Something went wrong. Please try again.")
     } finally {
       setIsSubmitting(false)
