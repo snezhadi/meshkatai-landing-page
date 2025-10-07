@@ -26,7 +26,7 @@ import {
   ChevronDown,
 } from "lucide-react"
 
-export default function MeshkatAILanding() {
+export default function HRCounselAILanding() {
   const [email, setEmail] = useState("")
   const [role, setRole] = useState("")
   const [expandedCard, setExpandedCard] = useState<number | null>(null)
