@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import Airtable from 'airtable'
+import { createClient } from '@supabase/supabase-js'
 
-// Initialize Airtable (will use environment variables)
-const base = new Airtable({
-  apiKey: process.env.AIRTABLE_API_KEY
-}).base(process.env.AIRTABLE_BASE_ID || '')
+// Initialize Supabase client
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+  process.env.SUPABASE_SERVICE_ROLE_KEY || ''
+)
 
 export async function POST(request: NextRequest) {
   try {
@@ -28,10 +29,10 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Check if Airtable is configured
-    if (!process.env.AIRTABLE_API_KEY || !process.env.AIRTABLE_BASE_ID) {
+    // Check if Supabase is configured
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
       // Fallback: just log the entry
-      console.log('Waitlist signup (Airtable not configured):', {
+      console.log('Waitlist signup (Supabase not configured):', {
         email,
         role,
         timestamp: Date.now(),
@@ -44,48 +45,52 @@ export async function POST(request: NextRequest) {
       })
     }
 
-    // Check if email already exists in Airtable
+    // Check if email already exists
     try {
-      const existingRecords = await base(process.env.AIRTABLE_TABLE_NAME || 'Waitlist')
-        .select({
-          filterByFormula: `{Email} = "${email}"`,
-          maxRecords: 1
-        })
-        .firstPage()
+      const { data: existingUser, error: selectError } = await supabase
+        .from('waitlist')
+        .select('email')
+        .eq('email', email)
+        .single()
 
-      if (existingRecords.length > 0) {
+      if (existingUser && !selectError) {
         return NextResponse.json(
           { error: 'Email already registered' },
           { status: 409 }
         )
       }
     } catch (error) {
-      console.error('Error checking existing email:', error)
-      // Continue with creation if check fails
+      // Continue if no existing user found (this is expected for new users)
     }
 
-    // Create new record in Airtable
+    // Create new record in Supabase
     try {
-      await base(process.env.AIRTABLE_TABLE_NAME || 'Waitlist').create([
-        {
-          fields: {
-            Email: email,
-            Role: role,
-            'Signup Date': new Date().toISOString(),
-            'IP Address': request.ip || 'unknown'
+      const { data, error } = await supabase
+        .from('waitlist')
+        .insert([
+          {
+            email,
+            role,
+            ip_address: request.ip || 'unknown',
+            created_at: new Date().toISOString()
           }
-        }
-      ])
+        ])
+        .select()
+
+      if (error) {
+        console.error('Supabase insert error:', error)
+        throw error
+      }
 
       return NextResponse.json({
         success: true,
         message: 'Successfully added to waitlist!'
       })
     } catch (error) {
-      console.error('Airtable creation error:', error)
+      console.error('Supabase creation error:', error)
       
       // Fallback: log the entry
-      console.log('Waitlist signup (Airtable failed):', {
+      console.log('Waitlist signup (Supabase failed):', {
         email,
         role,
         timestamp: Date.now(),
@@ -110,35 +115,31 @@ export async function POST(request: NextRequest) {
 // Optional: GET endpoint to retrieve waitlist (for admin purposes)
 export async function GET() {
   try {
-    // Check if Airtable is configured
-    if (!process.env.AIRTABLE_API_KEY || !process.env.AIRTABLE_BASE_ID) {
+    // Check if Supabase is configured
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
       return NextResponse.json({
         success: true,
         data: [],
         count: 0,
-        message: 'Airtable not configured - data logged locally'
+        message: 'Supabase not configured - data logged locally'
       })
     }
 
-    // Retrieve all records from Airtable
-    const records = await base(process.env.AIRTABLE_TABLE_NAME || 'Waitlist')
-      .select({
-        sort: [{ field: 'Signup Date', direction: 'desc' }]
-      })
-      .all()
+    // Retrieve all records from Supabase
+    const { data: waitlistData, error } = await supabase
+      .from('waitlist')
+      .select('*')
+      .order('created_at', { ascending: false })
 
-    const waitlistData = records.map(record => ({
-      id: record.id,
-      email: record.get('Email'),
-      role: record.get('Role'),
-      signupDate: record.get('Signup Date'),
-      ipAddress: record.get('IP Address')
-    }))
+    if (error) {
+      console.error('Supabase retrieval error:', error)
+      throw error
+    }
 
     return NextResponse.json({
       success: true,
-      data: waitlistData,
-      count: waitlistData.length
+      data: waitlistData || [],
+      count: waitlistData?.length || 0
     })
   } catch (error) {
     console.error('Waitlist retrieval error:', error)
