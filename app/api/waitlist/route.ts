@@ -1,5 +1,10 @@
-import { kv } from '@vercel/kv'
 import { NextRequest, NextResponse } from 'next/server'
+import Airtable from 'airtable'
+
+// Initialize Airtable (will use environment variables)
+const base = new Airtable({
+  apiKey: process.env.AIRTABLE_API_KEY
+}).base(process.env.AIRTABLE_BASE_ID || '')
 
 export async function POST(request: NextRequest) {
   try {
@@ -23,32 +28,75 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Check if email already exists
-    const existingEntry = await kv.get(`waitlist:${email}`)
-    if (existingEntry) {
-      return NextResponse.json(
-        { error: 'Email already registered' },
-        { status: 409 }
-      )
+    // Check if Airtable is configured
+    if (!process.env.AIRTABLE_API_KEY || !process.env.AIRTABLE_BASE_ID) {
+      // Fallback: just log the entry
+      console.log('Waitlist signup (Airtable not configured):', {
+        email,
+        role,
+        timestamp: Date.now(),
+        ip: request.ip || 'unknown'
+      })
+      
+      return NextResponse.json({
+        success: true,
+        message: 'Successfully added to waitlist! (Logged locally)'
+      })
     }
 
-    // Store the waitlist entry
-    const waitlistEntry = {
-      email,
-      role,
-      timestamp: Date.now(),
-      ip: request.ip || 'unknown'
+    // Check if email already exists in Airtable
+    try {
+      const existingRecords = await base(process.env.AIRTABLE_TABLE_NAME || 'Waitlist')
+        .select({
+          filterByFormula: `{Email} = "${email}"`,
+          maxRecords: 1
+        })
+        .firstPage()
+
+      if (existingRecords.length > 0) {
+        return NextResponse.json(
+          { error: 'Email already registered' },
+          { status: 409 }
+        )
+      }
+    } catch (error) {
+      console.error('Error checking existing email:', error)
+      // Continue with creation if check fails
     }
 
-    await kv.set(`waitlist:${email}`, waitlistEntry)
+    // Create new record in Airtable
+    try {
+      await base(process.env.AIRTABLE_TABLE_NAME || 'Waitlist').create([
+        {
+          fields: {
+            Email: email,
+            Role: role,
+            'Signup Date': new Date().toISOString(),
+            'IP Address': request.ip || 'unknown'
+          }
+        }
+      ])
 
-    // Also add to a list for easy retrieval
-    await kv.lpush('waitlist:all', email)
+      return NextResponse.json({
+        success: true,
+        message: 'Successfully added to waitlist!'
+      })
+    } catch (error) {
+      console.error('Airtable creation error:', error)
+      
+      // Fallback: log the entry
+      console.log('Waitlist signup (Airtable failed):', {
+        email,
+        role,
+        timestamp: Date.now(),
+        ip: request.ip || 'unknown'
+      })
 
-    return NextResponse.json({
-      success: true,
-      message: 'Successfully added to waitlist!'
-    })
+      return NextResponse.json({
+        success: true,
+        message: 'Successfully added to waitlist! (Logged locally)'
+      })
+    }
 
   } catch (error) {
     console.error('Waitlist signup error:', error)
@@ -62,15 +110,30 @@ export async function POST(request: NextRequest) {
 // Optional: GET endpoint to retrieve waitlist (for admin purposes)
 export async function GET() {
   try {
-    const emails = await kv.lrange('waitlist:all', 0, -1)
-    const waitlistData = []
-    
-    for (const email of emails) {
-      const entry = await kv.get(`waitlist:${email}`)
-      if (entry) {
-        waitlistData.push(entry)
-      }
+    // Check if Airtable is configured
+    if (!process.env.AIRTABLE_API_KEY || !process.env.AIRTABLE_BASE_ID) {
+      return NextResponse.json({
+        success: true,
+        data: [],
+        count: 0,
+        message: 'Airtable not configured - data logged locally'
+      })
     }
+
+    // Retrieve all records from Airtable
+    const records = await base(process.env.AIRTABLE_TABLE_NAME || 'Waitlist')
+      .select({
+        sort: [{ field: 'Signup Date', direction: 'desc' }]
+      })
+      .all()
+
+    const waitlistData = records.map(record => ({
+      id: record.id,
+      email: record.get('Email'),
+      role: record.get('Role'),
+      signupDate: record.get('Signup Date'),
+      ipAddress: record.get('IP Address')
+    }))
 
     return NextResponse.json({
       success: true,
