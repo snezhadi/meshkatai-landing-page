@@ -7,7 +7,7 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "MeshkatAI - Revolutionizing HR Legal Work with AI",
+  title: "HRCounsel.AI - Revolutionizing HR Legal Work with AI",
   description:
     "The first full-stack AI law firm specialized in Employment Law. Get instant legal document generation, compliance guidance, and negotiation support.",
     generator: 'v0.dev'
