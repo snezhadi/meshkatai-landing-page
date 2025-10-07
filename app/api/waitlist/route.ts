@@ -1,6 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 
+// Function to get client IP address
+function getClientIP(request: NextRequest): string {
+  // Check various headers for real IP (in order of preference)
+  const forwarded = request.headers.get('x-forwarded-for')
+  const realIP = request.headers.get('x-real-ip')
+  const cfConnectingIP = request.headers.get('cf-connecting-ip') // Cloudflare
+  const xClientIP = request.headers.get('x-client-ip')
+  
+  if (forwarded) {
+    // x-forwarded-for can contain multiple IPs, take the first one
+    return forwarded.split(',')[0].trim()
+  }
+  
+  if (realIP) {
+    return realIP
+  }
+  
+  if (cfConnectingIP) {
+    return cfConnectingIP
+  }
+  
+  if (xClientIP) {
+    return xClientIP
+  }
+  
+  // Fallback to NextRequest IP (usually works in development)
+  return request.ip || 'unknown'
+}
+
 // Initialize Supabase client
 const supabase = createClient(
   process.env.SUPABASE_URL || '',
@@ -36,7 +65,7 @@ export async function POST(request: NextRequest) {
         email,
         role,
         timestamp: Date.now(),
-        ip: request.ip || 'unknown'
+        ip: getClientIP(request)
       })
       
       return NextResponse.json({
@@ -71,7 +100,7 @@ export async function POST(request: NextRequest) {
           {
             email,
             role,
-            ip_address: request.ip || 'unknown',
+            ip_address: getClientIP(request),
             created_at: new Date().toISOString()
           }
         ])
@@ -94,7 +123,7 @@ export async function POST(request: NextRequest) {
         email,
         role,
         timestamp: Date.now(),
-        ip: request.ip || 'unknown'
+        ip: getClientIP(request)
       })
 
       return NextResponse.json({
