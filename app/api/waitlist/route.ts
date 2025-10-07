@@ -3,7 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 
 // Initialize Supabase client
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+  process.env.SUPABASE_URL || '',
   process.env.SUPABASE_SERVICE_ROLE_KEY || ''
 )
 
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if Supabase is configured
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
       // Fallback: just log the entry
       console.log('Waitlist signup (Supabase not configured):', {
         email,
@@ -116,7 +116,7 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   try {
     // Check if Supabase is configured
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
       return NextResponse.json({
         success: true,
         data: [],

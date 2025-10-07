@@ -64,7 +64,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... (long string)
 Create a `.env.local` file in your project root:
 
 ```env
-SUPABASE_URL=https://your-project-id.supabase.co
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=your_service_role_key_here
 ```
 

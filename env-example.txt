@@ -1,11 +1,8 @@
 # Supabase Environment Variables
 # Get these values from your Supabase project dashboard
 
-# Public URL (safe to expose in client-side code)
-NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
+# Supabase Project URL
+SUPABASE_URL=https://your-project-id.supabase.co
 
 # Service Role Key (keep this secret - server-side only)
 SUPABASE_SERVICE_ROLE_KEY=your_service_role_key_here
-
-# Optional: Anon Key (for client-side operations if needed)
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key_here
