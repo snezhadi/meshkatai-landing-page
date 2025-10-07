@@ -99,7 +99,7 @@ export default function HRCounselAILanding() {
                 </h1>
 
                 <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                Revolutionizing HR Legal Work with Intelligent AI Lawyers. 
+                Revolutionizing HR Legal Work with Intelligent AI Lawyers
                 </p>
 
                 <Button
