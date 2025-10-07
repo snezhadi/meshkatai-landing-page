@@ -1,6 +1,6 @@
-# MeshkatAI Landing Page
+# HRCounsel.AI Landing Page
 
-A modern, responsive landing page for MeshkatAI - the first full-stack AI law firm specialized in Employment Law.
+A modern, responsive landing page for HRCounsel.AI - the first full-stack AI law firm specialized in Employment Law.
 
 ## 🚀 Features
 
@@ -22,7 +22,7 @@ A modern, responsive landing page for MeshkatAI - the first full-stack AI law fi
 ## 📁 Project Structure
 
 ```
-meshkatai-landing-v3/
+hr-counsel-ai/
 ├── app/                    # Next.js app directory
 │   ├── globals.css        # Global styles
 │   ├── layout.tsx         # Root layout
@@ -40,7 +40,7 @@ meshkatai-landing-v3/
 1. **Hero Section**: Eye-catching header with AI lawyer concept
 2. **How It Works**: Three-step process explanation
 3. **What We Cover**: Legal documents and HR letters tabs
-4. **Why MeshkatAI**: Six key benefits with icons
+4. **Why HRCounsel.AI**: Six key benefits with icons
 5. **Sneak Peek**: Product preview section
 6. **Waitlist Signup**: Email collection form
 7. **Contact CTA**: Partnership opportunities
@@ -58,7 +58,7 @@ meshkatai-landing-v3/
 1. Clone the repository:
 ```bash
 git clone <your-repo-url>
-cd meshkatai-landing-v3
+cd hr-counsel-ai
 ```
 
 2. Install dependencies:

@@ -171,7 +171,7 @@ export default function MeshkatAIDesign1() {
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-light text-gray-900 mb-16">Why Choose MeshkatAI?</h2>
+            <h2 className="text-4xl font-light text-gray-900 mb-16">Why Choose HRCounsel.AI?</h2>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
@@ -198,7 +198,7 @@ export default function MeshkatAIDesign1() {
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-4xl font-light mb-6">Get Early Access</h2>
-            <p className="text-xl text-teal-100 mb-12">Join the waitlist for exclusive early access to MeshkatAI</p>
+            <p className="text-xl text-teal-100 mb-12">Join the waitlist for exclusive early access to HRCounsel.AI</p>
 
             <form onSubmit={handleWaitlistSubmit} className="max-w-md mx-auto space-y-4">
               <Input
@@ -231,9 +231,9 @@ export default function MeshkatAIDesign1() {
       <footer className="py-12 bg-white border-t border-gray-100">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <h3 className="text-2xl font-light text-gray-900 mb-2">MeshkatAI</h3>
+            <h3 className="text-2xl font-light text-gray-900 mb-2">HRCounsel.AI</h3>
             <p className="text-gray-600 mb-4">hello@meshkatai.com</p>
-            <p className="text-sm text-gray-500">© 2024 MeshkatAI. All rights reserved.</p>
+            <p className="text-sm text-gray-500">© 2024 HRCounsel.AI. All rights reserved.</p>
           </div>
         </div>
       </footer>

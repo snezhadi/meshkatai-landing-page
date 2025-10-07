@@ -23,11 +23,13 @@ import {
   Zap,
   Clock,
   Award,
+  ChevronDown,
 } from "lucide-react"
 
 export default function MeshkatAILanding() {
   const [email, setEmail] = useState("")
   const [role, setRole] = useState("")
+  const [expandedCard, setExpandedCard] = useState<number | null>(null)
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState("")
@@ -65,11 +67,13 @@ export default function MeshkatAILanding() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
                             {/* Left Column - Text Content */}
               <div className="text-center lg:text-left">
-                {/* Logo Placeholder */}
+                {/* Logo */}
                 <div className="mb-8 lg:mb-12">
-                  <div className="inline-flex items-center justify-center w-36 h-11 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white font-light tracking-widest text-lg">
-                    MESHKAT<span className="text-teal-400 font-bold">AI</span>
-                  </div>
+                  <img
+                    src="/logo.png"
+                    alt="HRCounsel.AI Logo"
+                    className="h-11 w-auto"
+                  />
                 </div>
 
                 <div className="inline-flex items-center bg-teal-500/20 text-teal-300 px-4 py-2 rounded-full text-sm font-medium mb-6 animate-pulse">
@@ -86,7 +90,7 @@ export default function MeshkatAILanding() {
                 </h1>
 
                 <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                Revolutionizing HR Legal Work with Human-Like AI Lawyers. 
+                Revolutionizing HR Legal Work with Intelligent AI Lawyers. 
                 </p>
 
                 <Button
@@ -110,8 +114,8 @@ export default function MeshkatAILanding() {
                   {/* Main Product Image */}
                   <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden">
                     <img
-                      src="/hero.png"
-                      alt="MeshkatAI Product Interface - AI Lawyer Avatar with Contract Generator"
+                      src="/hero.jpg"
+                      alt="HRCounsel.AI Product Interface - AI Lawyer with Contract Generator"
                       className="w-full h-auto"
                     />
 
@@ -169,7 +173,7 @@ export default function MeshkatAILanding() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">How It Works</h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Three simple steps to get professional legal support for your HR needs
+            Three simple ways to get expert HR legal support powered by AI lawyers
             </p>
           </div>
 
@@ -178,9 +182,9 @@ export default function MeshkatAILanding() {
               <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110">
                 <MessageCircle className="w-10 h-10 text-teal-500" />
               </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">1. AI Lawyer Consultation</h3>
+              <h3 className="text-xl font-semibold text-slate-900 mb-3">1. Legal Advisory</h3>
               <p className="text-slate-600">
-                Interact with our AI lawyer through natural conversation to explain your legal needs
+              Get instant guidance from AI lawyers trained in your jurisdiction and HR compliance
               </p>
             </div>
 
@@ -188,7 +192,7 @@ export default function MeshkatAILanding() {
               <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110">
                 <FileText className="w-10 h-10 text-teal-500" />
               </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">2. Drafting Documents</h3>
+              <h3 className="text-xl font-semibold text-slate-900 mb-3">2. Document Drafting</h3>
               <p className="text-slate-600">
                 Receive professionally drafted legal documents tailored to your specific requirements
               </p>
@@ -198,9 +202,9 @@ export default function MeshkatAILanding() {
               <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110">
                 <Handshake className="w-10 h-10 text-teal-500" />
               </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">3. Negotiation Support</h3>
+              <h3 className="text-xl font-semibold text-slate-900 mb-3">3. Expert Audit</h3>
               <p className="text-slate-600">
-                Get ongoing support for document review, revisions, and negotiation strategies
+              Have your legal documents reviewed by AI lawyers using expert-built playbooks for compliance and accuracy
               </p>
             </div>
           </div>
@@ -208,214 +212,269 @@ export default function MeshkatAILanding() {
       </section>
 
       {/* What We Cover */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 xl:px-16">
+      <section className="py-20 bg-white relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 bg-gradient-to-r from-teal-500/3 via-transparent to-blue-500/3"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-teal-100/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-100/10 rounded-full blur-3xl"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 relative">
           <div className="text-center mb-16">
+            <div className="inline-flex items-center bg-teal-100 text-teal-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+              <Zap className="w-4 h-4 mr-2" />
+              Comprehensive Solutions
+            </div>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">What We Cover</h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
               Comprehensive employment law solutions for all your HR needs
             </p>
           </div>
 
-          <div className="max-w-6xl mx-auto">
-            <Tabs defaultValue="onboarding" className="w-full">
-              <TabsList className="grid w-full grid-cols-3 mb-4 bg-slate-100 p-1 rounded-lg">
-                <TabsTrigger
-                  value="onboarding"
-                  className="text-sm md:text-lg py-4 md:py-5 px-1 md:px-6 rounded-md font-semibold transition-all duration-200 data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm data-[state=inactive]:text-slate-600 data-[state=inactive]:hover:text-slate-800 data-[state=inactive]:hover:bg-slate-50 text-center break-words flex items-center justify-center"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto relative items-start">
+            {/* Card 1: Recruitment & Selection */}
+            <Card className="bg-slate-50 border-slate-200 hover:shadow-lg transition-all duration-300 overflow-hidden">
+              <CardContent className="p-0">
+                <button
+                  onClick={() => setExpandedCard(expandedCard === 1 ? null : 1)}
+                  className="w-full p-6 flex items-center justify-between hover:bg-slate-100/50 transition-colors"
                 >
-                  Employee<br className="md:hidden" /> Onboarding
-                </TabsTrigger>
-                <TabsTrigger
-                  value="employment"
-                  className="text-sm md:text-lg py-4 md:py-5 px-1 md:px-6 rounded-md font-semibold transition-all duration-200 data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm data-[state=inactive]:text-slate-600 data-[state=inactive]:hover:text-slate-800 data-[state=inactive]:hover:bg-slate-50 text-center break-words flex items-center justify-center"
-                >
-                  During<br className="md:hidden" /> Employment
-                </TabsTrigger>
-                <TabsTrigger
-                  value="termination"
-                  className="text-sm md:text-lg py-4 md:py-5 px-1 md:px-6 rounded-md font-semibold transition-all duration-200 data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm data-[state=inactive]:text-slate-600 data-[state=inactive]:hover:text-slate-800 data-[state=inactive]:hover:bg-slate-50 text-center break-words flex items-center justify-center"
-                >
-                  Exit &<br className="md:hidden" /> Termination
-                </TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="onboarding">
-                <Card>
-                  <CardContent className="p-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-4">
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Employment Offer Letter</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Job Description</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Employment Contract / Appointment Letter</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Non-Disclosure Agreement (NDA)</span>
-                        </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center">
+                      <Users className="w-5 h-5 text-teal-600" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-slate-900">Recruitment & Selection</h3>
+                  </div>
+                  <ChevronDown 
+                    className={`w-5 h-5 text-slate-500 transition-transform duration-200 ${
+                      expandedCard === 1 ? 'rotate-180' : ''
+                    }`} 
+                  />
+                </button>
+                {expandedCard === 1 && (
+                  <div className="px-6 pb-6 border-t border-slate-200/50 pt-4 animate-in slide-in-from-top-2 duration-200">
+                    <div className="space-y-3">
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
+                        <span className="text-slate-700 text-sm">Draft & review job descriptions</span>
                       </div>
-                      <div className="space-y-4">
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Employee Handbook</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Intellectual Property Assignment Agreement</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Welcome Letter / Onboarding Schedule</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Background Check Authorization</span>
-                        </div>
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
+                        <span className="text-slate-700 text-sm">Advise on job ad compliance</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
+                        <span className="text-slate-700 text-sm">Review interview questions</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
+                        <span className="text-slate-700 text-sm">Prepare offer letters & onboarding documents</span>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
 
-              <TabsContent value="employment">
-                <Card>
-                  <CardContent className="p-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-4">
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Performance Appraisal and Review Letters</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Promotion Letters and Contract Amendments</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Salary Increment or Adjustment Letters</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Warning / Disciplinary Letters</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Leave Approval or Rejection Letters</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Transfer or Secondment Letters</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Training Invitations and Confirmation Letters</span>
-                        </div>
+            {/* Card 2: Employment & Engagement */}
+            <Card className="bg-slate-50 border-slate-200 hover:shadow-lg transition-all duration-300 overflow-hidden">
+              <CardContent className="p-0">
+                <button
+                  onClick={() => setExpandedCard(expandedCard === 2 ? null : 2)}
+                  className="w-full p-6 flex items-center justify-between hover:bg-slate-100/50 transition-colors"
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center">
+                      <Handshake className="w-5 h-5 text-teal-600" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-slate-900">Employment & Engagement</h3>
+                  </div>
+                  <ChevronDown 
+                    className={`w-5 h-5 text-slate-500 transition-transform duration-200 ${
+                      expandedCard === 2 ? 'rotate-180' : ''
+                    }`} 
+                  />
+                </button>
+                {expandedCard === 2 && (
+                  <div className="px-6 pb-6 border-t border-slate-200/50 pt-4 animate-in slide-in-from-top-2 duration-200">
+                    <div className="space-y-3">
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
+                        <span className="text-slate-700 text-sm">Draft & negotiate employment, contractor, and internship agreements</span>
                       </div>
-                      <div className="space-y-4">
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Policy Updates and Acknowledgment Letters</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Reference Letter</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Employee Verification Letter</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Contract Renewal/Extension Letter</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Probation Extension Letter</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Notice of Suspension Letter</span>
-                        </div>
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
+                        <span className="text-slate-700 text-sm">Draft non-compete, non-solicitation, and confidentiality clauses</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
+                        <span className="text-slate-700 text-sm">Prepare IP assignment and secondment agreements</span>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
 
-              <TabsContent value="termination">
-                <Card>
-                  <CardContent className="p-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-4">
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Resignation Acceptance Letter</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Termination Letter / Notice of Termination</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Relieving Letter (confirmation of release from employment)</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Experience Certificate / Service Letter</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Return of Company Property Letter</span>
-                        </div>
+            {/* Card 3: HR Policies & Governance */}
+            <Card className="bg-slate-50 border-slate-200 hover:shadow-lg transition-all duration-300 overflow-hidden">
+              <CardContent className="p-0">
+                <button
+                  onClick={() => setExpandedCard(expandedCard === 3 ? null : 3)}
+                  className="w-full p-6 flex items-center justify-between hover:bg-slate-100/50 transition-colors"
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center">
+                      <Shield className="w-5 h-5 text-teal-600" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-slate-900">HR Policies & Governance</h3>
+                  </div>
+                  <ChevronDown 
+                    className={`w-5 h-5 text-slate-500 transition-transform duration-200 ${
+                      expandedCard === 3 ? 'rotate-180' : ''
+                    }`} 
+                  />
+                </button>
+                {expandedCard === 3 && (
+                  <div className="px-6 pb-6 border-t border-slate-200/50 pt-4 animate-in slide-in-from-top-2 duration-200">
+                    <div className="space-y-3">
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
+                        <span className="text-slate-700 text-sm">Create & review employee handbooks</span>
                       </div>
-                      <div className="space-y-4">
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Exit Interview Invitation Letter</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Final Settlement and Clearance Documents</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Contract Termination or Non-Renewal Letters</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Retirement Notification and Acceptance Letter</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">Layoff or Redundancy Notice</span>
-                        </div>
-                        <div className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-teal-500 mr-3" />
-                          <span className="text-slate-700">No Objection Certificate (NOC) Letter</span>
-                        </div>
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
+                        <span className="text-slate-700 text-sm">Draft disciplinary, grievance, social media, and IT policies</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
+                        <span className="text-slate-700 text-sm">Conduct HR compliance audits</span>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            </Tabs>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Card 4: Compensation & Benefits */}
+            <Card className="bg-slate-50 border-slate-200 hover:shadow-lg transition-all duration-300 overflow-hidden">
+              <CardContent className="p-0">
+                <button
+                  onClick={() => setExpandedCard(expandedCard === 4 ? null : 4)}
+                  className="w-full p-6 flex items-center justify-between hover:bg-slate-100/50 transition-colors"
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center">
+                      <DollarSign className="w-5 h-5 text-teal-600" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-slate-900">Compensation & Benefits</h3>
+                  </div>
+                  <ChevronDown 
+                    className={`w-5 h-5 text-slate-500 transition-transform duration-200 ${
+                      expandedCard === 4 ? 'rotate-180' : ''
+                    }`} 
+                  />
+                </button>
+                {expandedCard === 4 && (
+                  <div className="px-6 pb-6 border-t border-slate-200/50 pt-4 animate-in slide-in-from-top-2 duration-200">
+                    <div className="space-y-3">
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
+                        <span className="text-slate-700 text-sm">Draft stock option plans and grant agreements</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
+                        <span className="text-slate-700 text-sm">Review benefit policies and equity plans</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Card 5: Termination & Offboarding */}
+            <Card className="bg-slate-50 border-slate-200 hover:shadow-lg transition-all duration-300 overflow-hidden">
+              <CardContent className="p-0">
+                <button
+                  onClick={() => setExpandedCard(expandedCard === 5 ? null : 5)}
+                  className="w-full p-6 flex items-center justify-between hover:bg-slate-100/50 transition-colors"
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center">
+                      <FileText className="w-5 h-5 text-teal-600" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-slate-900">Termination & Offboarding</h3>
+                  </div>
+                  <ChevronDown 
+                    className={`w-5 h-5 text-slate-500 transition-transform duration-200 ${
+                      expandedCard === 5 ? 'rotate-180' : ''
+                    }`} 
+                  />
+                </button>
+                {expandedCard === 5 && (
+                  <div className="px-6 pb-6 border-t border-slate-200/50 pt-4 animate-in slide-in-from-top-2 duration-200">
+                    <div className="space-y-3">
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
+                        <span className="text-slate-700 text-sm">Advise on layoffs, notice, and severance</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
+                        <span className="text-slate-700 text-sm">Draft just cause and without cause termination documentation</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
+                        <span className="text-slate-700 text-sm">Review settlement terms and release of claims</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Card 6: Dispute Resolution */}
+            <Card className="bg-slate-50 border-slate-200 hover:shadow-lg transition-all duration-300 overflow-hidden">
+              <CardContent className="p-0">
+                <button
+                  onClick={() => setExpandedCard(expandedCard === 6 ? null : 6)}
+                  className="w-full p-6 flex items-center justify-between hover:bg-slate-100/50 transition-colors"
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center">
+                      <Target className="w-5 h-5 text-teal-600" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-slate-900">Dispute Resolution</h3>
+                  </div>
+                  <ChevronDown 
+                    className={`w-5 h-5 text-slate-500 transition-transform duration-200 ${
+                      expandedCard === 6 ? 'rotate-180' : ''
+                    }`} 
+                  />
+                </button>
+                {expandedCard === 6 && (
+                  <div className="px-6 pb-6 border-t border-slate-200/50 pt-4 animate-in slide-in-from-top-2 duration-200">
+                    <div className="space-y-3">
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
+                        <span className="text-slate-700 text-sm">Manage arbitration and litigation matters</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
+                        <span className="text-slate-700 text-sm">Draft settlement and release of claim agreements</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* Why MeshkatAI */}
+      {/* Why HRCounsel.AI */}
       <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 xl:px-16">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Why MeshkatAI?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Why HRCounsel.AI?</h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
             The future of legal services is here—faster, smarter, available anytime, anywhere, and more affordable than ever
             </p>
@@ -469,8 +528,8 @@ export default function MeshkatAILanding() {
                 <div className="bg-teal-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-teal-200 transition-colors">
                   <Handshake className="w-8 h-8 text-teal-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3">Negotiation Help</h3>
-                <p className="text-slate-600">Get strategic guidance for contract negotiations and disputes</p>
+                <h3 className="text-xl font-semibold text-slate-900 mb-3">Cross-Border Expertise</h3>
+                <p className="text-slate-600">Get clear legal guidance for HR and hiring across multiple jurisdictions</p>
               </CardContent>
             </Card>
 
@@ -479,8 +538,8 @@ export default function MeshkatAILanding() {
                 <div className="bg-teal-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-teal-200 transition-colors">
                   <Bot className="w-8 h-8 text-teal-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3">Digital Human UX</h3>
-                <p className="text-slate-600">Intuitive interface with human-like AI interaction, accessible 24/7</p>
+                <h3 className="text-xl font-semibold text-slate-900 mb-3">Agentic UX Design</h3>
+                <p className="text-slate-600">Agentic AI and intuitive design for fast, seamless results—available 24/7</p>
               </CardContent>
             </Card>
           </div>
@@ -501,8 +560,8 @@ export default function MeshkatAILanding() {
             <Card className="overflow-hidden shadow-2xl">
               <CardContent className="p-0">
                 <img
-                  src="/meshkatai-screen.png"
-                  alt="MeshkatAI Product Interface - AI Lawyer Dashboard"
+                  src="/hrcounsel-screen.png"
+                  alt="HRCounsel.AI Product Interface - AI Lawyer Dashboard"
                   className="w-full h-auto rounded-lg"
                 />
               </CardContent>
@@ -597,7 +656,7 @@ export default function MeshkatAILanding() {
             </h2>
             <p className="text-xl text-slate-600 mb-8">
               We're looking for forward-thinking organizations to partner with us in revolutionizing employment law
-              services. Let's discuss how MeshkatAI can transform your legal workflows.
+              services. Let's discuss how HRCounsel.AI can transform your legal workflows.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
@@ -613,8 +672,8 @@ export default function MeshkatAILanding() {
               size="lg"
               onClick={() => {
                 // Open email client with demo request
-                const subject = encodeURIComponent("MeshkatAI Demo Request")
-                const body = encodeURIComponent(`Hi MeshkatAI team,
+                const subject = encodeURIComponent("HRCounsel.AI Demo Request")
+                const body = encodeURIComponent(`Hi HRCounsel.AI team,
 
 I'm interested in scheduling a demo of your AI legal services platform.
 
@@ -639,12 +698,28 @@ Best regards,
           <div className="max-w-6xl mx-auto">
             {/* Company Info */}
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold mb-2">MeshkatAI</h3>
+              <h3 className="text-2xl font-bold mb-2">HRCounsel.AI</h3>
               <p className="text-slate-400">The Future of Employment Law is Here</p>
             </div>
 
             {/* Office Addresses */}
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {/* Toronto Office */}
+              <div className="bg-slate-800/50 rounded-lg p-6 border border-slate-700/50">
+                <div className="flex items-center mb-4">
+                  <div className="w-3 h-3 bg-teal-500 rounded-full mr-3"></div>
+                  <h4 className="text-lg font-semibold text-teal-400">Toronto Office</h4>
+                </div>
+                <div className="space-y-2 text-slate-300">
+                  <p className="font-medium">Meshkat Partners Inc.</p>
+                  <p className="text-sm leading-relaxed">
+                    Unit 502, 55 Commerce Valley Dr. West, #21<br />
+                    Thornhill, ON, L3T 7V9<br />
+                    Canada
+                  </p>
+                </div>
+              </div>
+
               {/* Abu Dhabi Office */}
               <div className="bg-slate-800/50 rounded-lg p-6 border border-slate-700/50">
                 <div className="flex items-center mb-4">
@@ -661,21 +736,6 @@ Best regards,
                 </div>
               </div>
 
-              {/* Toronto Office */}
-              <div className="bg-slate-800/50 rounded-lg p-6 border border-slate-700/50">
-                <div className="flex items-center mb-4">
-                  <div className="w-3 h-3 bg-teal-500 rounded-full mr-3"></div>
-                  <h4 className="text-lg font-semibold text-teal-400">Toronto Office</h4>
-                </div>
-                <div className="space-y-2 text-slate-300">
-                  <p className="font-medium">Meshkat Partners Inc.</p>
-                  <p className="text-sm leading-relaxed">
-                    Unit 502, 55 Commerce Valley Dr. West, #21<br />
-                    Thornhill, ON, L3T 7V9<br />
-                    Canada
-                  </p>
-                </div>
-              </div>
             </div>
 
             {/* Contact Info */}
